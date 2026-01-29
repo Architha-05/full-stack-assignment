@@ -3,14 +3,14 @@ const router = express.Router();
 const multer = require("multer");
 const Client = require("../models/client");
 
-// Image upload config
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) { cb(null, "uploads/"); },
     filename: function (req, file, cb) { cb(null, Date.now() + "-" + file.originalname); }
 });
 const upload = multer({ storage });
 
-// GET all clients
+
 router.get("/", async (req, res) => {
     const clients = await Client.find();
     res.json(clients);

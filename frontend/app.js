@@ -1,13 +1,10 @@
 const backendURL = "http://localhost:5000/api";
-
-/* ================= PROJECTS ================= */
 fetch(`${backendURL}/projects`)
   .then(res => res.json())
   .then(projects => {
     const list = document.querySelector(".project-list");
-    list.innerHTML = ""; // clear previous content
+    list.innerHTML = ""; 
 
-    // If no projects in DB, show a placeholder
     if (projects.length === 0) {
       list.innerHTML = "<p>No projects available yet.</p>";
       return;
@@ -28,8 +25,6 @@ fetch(`${backendURL}/projects`)
     });
   })
   .catch(err => console.error("Projects fetch error:", err));
-
-/* ================= CLIENTS ================= */
 fetch(`${backendURL}/clients`)
   .then(res => res.json())
   .then(clients => {
@@ -55,7 +50,6 @@ fetch(`${backendURL}/clients`)
   })
   .catch(err => console.error("Clients fetch error:", err));
 
-/* ================= CONTACT FORM ================= */
 document.getElementById("contactForm")?.addEventListener("submit", async e => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(e.target).entries());
@@ -74,7 +68,6 @@ document.getElementById("contactForm")?.addEventListener("submit", async e => {
   }
 });
 
-/* ================= NEWSLETTER ================= */
 document.getElementById("subscribeBtn")?.addEventListener("click", async () => {
   const email = document.getElementById("newsletterEmail").value;
   if (!email) return alert("Enter email");

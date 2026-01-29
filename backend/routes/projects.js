@@ -4,14 +4,14 @@ const multer = require("multer");
 const path = require("path");
 const Project = require("../models/project");
 
-// Multer setup
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
 });
 const upload = multer({ storage });
 
-// POST new project
+
 router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -21,7 +21,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const project = new Project({
       name,
       description,
-      imageUrl: `/uploads/${req.file.filename}`, // <-- use forward slashes
+      imageUrl: `/uploads/${req.file.filename}`, 
     });
 
     await project.save();
@@ -31,11 +31,11 @@ router.post("/", upload.single("image"), async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-// GET all projects
+
 router.get("/", async (req, res) => {
   try {
-    const projects = await Project.find(); // fetch all projects from MongoDB
-    res.json(projects); // send JSON to frontend
+    const projects = await Project.find(); 
+    res.json(projects); 
   } catch (err) {
     console.error("Error fetching projects:", err);
     res.status(500).json({ error: "Server error" });

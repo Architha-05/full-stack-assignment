@@ -6,7 +6,6 @@
 <title>TechNova Solutions</title>
 
 <style>
-/* ===== GLOBAL ===== */
 * {
   margin:0;
   padding:0;
@@ -20,7 +19,6 @@ body {
 }
 a { text-decoration:none; color:inherit; }
 
-/* ===== NAVBAR ===== */
 nav {
   display:flex;
   justify-content:space-between;
@@ -50,7 +48,6 @@ nav ul li a:hover {
   color:#2563eb;
 }
 
-/* ===== HERO ===== */
 .hero {
   display:flex;
   align-items:center;
@@ -86,7 +83,6 @@ nav ul li a:hover {
   background:#1d4ed8;
 }
 
-/* ===== SECTIONS ===== */
 section {
   padding:90px 60px;
 }
@@ -98,7 +94,6 @@ section h2 {
   color:#0f172a;
 }
 
-/* ===== GRIDS ===== */
 .about-container,
 .why-container,
 .work-container {
@@ -109,7 +104,6 @@ section h2 {
   margin:auto;
 }
 
-/* ===== CARDS ===== */
 .card {
   background:#ffffff;
   border-radius:14px;
@@ -138,7 +132,6 @@ section h2 {
   color:#475569;
 }
 
-/* ===== PROJECTS & CLIENTS ===== */
 .project-list,
 .client-list {
   display:flex;
@@ -194,7 +187,6 @@ section h2 {
   background:#1d4ed8;
 }
 
-/* ===== CONTACT ===== */
 form {
   background:#ffffff;
   padding:35px;
@@ -222,7 +214,6 @@ form button:hover {
   background:#1d4ed8;
 }
 
-/* ===== NEWSLETTER ===== */
 #newsletter {
   background:#e9eaec;
   color:#ffffff;
@@ -237,7 +228,6 @@ form button:hover {
   color:#1e293b;
 }
 
-/* ===== FOOTER ===== */
 footer {
   background:#021024;
   color:#ffffff;
@@ -263,7 +253,6 @@ footer .socials a:hover{
   background:#2563eb;
 }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   nav ul { display:none; }
   .hero { flex-direction:column; text-align:center; }
@@ -367,12 +356,11 @@ footer .socials a:hover{
 <script>
 const backendURL = "http://localhost:5000/api";
 
-/* ===== FETCH PROJECTS ===== */
 fetch(`${backendURL}/projects`)
   .then(res => res.json())
   .then(projects => {
     const list = document.querySelector(".project-list");
-    list.innerHTML = ""; // clear previous content
+    list.innerHTML = "";
 
     if (!projects.length) {
       list.innerHTML = "<p>No projects available yet.</p>";
@@ -394,7 +382,6 @@ fetch(`${backendURL}/projects`)
   })
   .catch(err => console.error("Projects fetch error:", err));
 
-/* ===== FETCH CLIENTS ===== */
 fetch(`${backendURL}/clients`)
   .then(res => res.json())
   .then(clients => {
@@ -446,7 +433,6 @@ document.getElementById("contactForm").addEventListener("submit", async e => {
   }
 });
 
-// Newsletter
 document.getElementById("subscribeBtn").addEventListener("click", async () => {
   const email = document.getElementById("newsletterEmail").value;
   if(!email) return alert("Enter your email!");

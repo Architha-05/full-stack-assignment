@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel</title>
 <style>
-/* ===== GLOBAL ===== */
 * {
   margin:0;
   padding:0;
@@ -19,7 +18,6 @@ body {
   padding: 20px;
 }
 
-/* ===== HEADER ===== */
 h1 {
   text-align: center;
   color: #4f46e5;
@@ -27,7 +25,6 @@ h1 {
   margin-bottom: 40px;
 }
 
-/* ===== CONTAINER ===== */
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
@@ -37,7 +34,6 @@ h1 {
   padding-bottom: 50px;
 }
 
-/* ===== CARD ===== */
 .card {
   background:#fff;
   border-radius:20px;
@@ -65,14 +61,12 @@ h1 {
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-/* ===== HEADINGS ===== */
 .card h2 {
   margin-bottom: 20px;
   color: #1e293b;
   font-size: 22px;
 }
 
-/* ===== FORMS ===== */
 form {
   display: flex;
   flex-direction: column;
@@ -112,7 +106,6 @@ button:hover {
   transform: scale(1.03);
 }
 
-/* ===== LISTS ===== */
 ul {
   list-style:none;
   margin-top:10px;
@@ -133,17 +126,14 @@ li {
 
 li:hover { background:#e0e7ff; }
 
-/* ===== FILE INPUT ===== */
 input[type="file"] {
   padding:6px;
 }
 
-/* ===== SCROLLBAR ===== */
 ul::-webkit-scrollbar { width:8px; }
 ul::-webkit-scrollbar-thumb { background:#4f46e5; border-radius:8px; }
 ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
 
-/* ===== RESPONSIVE ===== */
 @media(max-width: 768px){
   .container { grid-template-columns: 1fr; }
 }
@@ -154,7 +144,6 @@ ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
 <h1>Admin Panel</h1>
 <div class="container">
 
-  <!-- Add Project -->
   <div class="card">
     <h2>Add Project</h2>
     <form id="projectForm" enctype="multipart/form-data">
@@ -165,7 +154,6 @@ ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
     </form>
   </div>
 
-  <!-- Add Client -->
   <div class="card">
     <h2>Add Client</h2>
     <form id="clientForm" enctype="multipart/form-data">
@@ -177,13 +165,11 @@ ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
     </form>
   </div>
 
-  <!-- Contact Responses -->
   <div class="card">
     <h2>Contact Form Responses</h2>
     <ul id="contactList"></ul>
   </div>
 
-  <!-- Newsletter Subscribers -->
   <div class="card">
     <h2>Newsletter Subscribers</h2>
     <ul id="subscriberList"></ul>
@@ -194,7 +180,6 @@ ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
 <script>
 const backendURL = "http://localhost:5000/api";
 
-/* ===== Add Project ===== */
 document.getElementById("projectForm").addEventListener("submit", async e => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -203,7 +188,6 @@ document.getElementById("projectForm").addEventListener("submit", async e => {
   else { alert("Error adding project."); }
 });
 
-/* ===== Add Client ===== */
 document.getElementById("clientForm").addEventListener("submit", async e => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -212,7 +196,6 @@ document.getElementById("clientForm").addEventListener("submit", async e => {
   else { alert("Error adding client."); }
 });
 
-/* ===== Fetch Contact Responses ===== */
 const contactList = document.getElementById("contactList");
 fetch(`${backendURL}/contacts`).then(r=>r.json()).then(data=>{
   contactList.innerHTML="";
@@ -223,7 +206,6 @@ fetch(`${backendURL}/contacts`).then(r=>r.json()).then(data=>{
   });
 });
 
-/* ===== Fetch Newsletter Subscribers ===== */
 const subscriberList = document.getElementById("subscriberList");
 fetch(`${backendURL}/newsletter`).then(r=>r.json()).then(data=>{
   subscriberList.innerHTML="";
