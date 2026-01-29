@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechNova Solutions</title>
+
+<style>
+/* ===== GLOBAL ===== */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+body {
+  background:#f6f8fc;
+  color:#1e293b;
+  line-height:1.6;
+}
+a { text-decoration:none; color:inherit; }
+
+/* ===== NAVBAR ===== */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:#ffffff;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+nav .logo {
+  font-size:24px;
+  font-weight:700;
+  color:#1e293b;
+}
+nav ul {
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+nav ul li a {
+  color:#1e293b;
+  font-weight:500;
+}
+nav ul li a:hover {
+  color:#2563eb;
+}
+
+/* ===== HERO ===== */
+.hero {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:100px 60px;
+  min-height:85vh;
+  background:
+    url('./bg.png') center/cover no-repeat;
+}
+.hero-content {
+  max-width:620px;
+}
+.hero h1 {
+  font-size:54px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+.hero p {
+  font-size:18px;
+  color:#475569;
+  margin-bottom:30px;
+}
+.btn-primary {
+  padding:15px 32px;
+  background:#2563eb;
+  color:#ffffff;
+  font-weight:600;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+.btn-primary:hover {
+  background:#1d4ed8;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding:90px 60px;
+}
+section h2 {
+  text-align:center;
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:55px;
+  color:#0f172a;
+}
+
+/* ===== GRIDS ===== */
+.about-container,
+.why-container,
+.work-container {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background:#ffffff;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(15,23,42,0.08);
+  transition:.3s;
+}
+.card:hover {
+  transform:translateY(-6px);
+}
+.card img {
+  width:80px;
+  height:80px;
+  padding:14px;
+  background:#e0e7ff;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+.card h3 {
+  font-size:20px;
+  margin-bottom:10px;
+}
+.card p {
+  font-size:14px;
+  color:#475569;
+}
+
+/* ===== PROJECTS & CLIENTS ===== */
+.project-list,
+.client-list {
+  display:flex;
+  gap:25px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  max-width:1200px;
+  margin:auto;
+}
+
+.project-card,
+.client-card {
+  width:260px;
+  height:340px;
+  background:#ffffff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+.project-card:hover,
+.client-card:hover {
+  transform:translateY(-6px);
+}
+
+.project-card img,
+.client-card img {
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.project-card .content,
+.client-card .content {
+  padding:15px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.project-card button {
+  padding:8px;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+.project-card button:hover {
+  background:#1d4ed8;
+}
+
+/* ===== CONTACT ===== */
+form {
+  background:#ffffff;
+  padding:35px;
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+input {
+  padding:12px;
+  border-radius:6px;
+  border:1px solid #cbd5f5;
+}
+form button {
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:12px;
+}
+form button:hover {
+  background:#1d4ed8;
+}
+
+/* ===== NEWSLETTER ===== */
+#newsletter {
+  background:#e9eaec;
+  color:#ffffff;
+  text-align:center;
+}
+#newsletter input {
+  max-width:320px;
+  margin:15px auto;
+}
+#newsletter button {
+  background:#facc15;
+  color:#1e293b;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background:#021024;
+  color:#ffffff;
+  text-align:center;
+  padding:40px 20px;
+}
+footer a {
+  color:#60a5fa;
+}
+footer .socials{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+footer .socials a{
+  background:#1e293b;
+  padding:8px 14px;
+  border-radius:6px;
+  color:white;
+}
+footer .socials a:hover{
+  background:#2563eb;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  nav ul { display:none; }
+  .hero { flex-direction:column; text-align:center; }
+  section { padding:70px 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">TechNova</div>
+  <ul>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#why">Why Choose Us</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Innovating Projects.<br>Delivering Happy Clients.</h1>
+    <p>We create cutting-edge solutions for businesses worldwide.</p>
+    <button class="btn-primary"
+      onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+      Explore Projects
+    </button>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <div class="about-container">
+    <div class="card"><h3>Our Mission</h3><p>Deliver innovative tech solutions.</p></div>
+    <div class="card"><h3>Our Vision</h3><p>Become a global technology leader.</p></div>
+    <div class="card"><h3>Our Values</h3><p>Integrity, Innovation & Excellence.</p></div>
+  </div>
+</section>
+
+<section id="why">
+  <h2>Why Choose Us</h2>
+  <div class="why-container">
+    <div class="card"><img src="https://picsum.photos/80"><h3>Expert Team</h3><p>Skilled professionals</p></div>
+    <div class="card"><img src="https://picsum.photos/81"><h3>Innovation</h3><p>Creative solutions</p></div>
+    <div class="card"><img src="https://picsum.photos/82"><h3>Client Focus</h3><p>Customer satisfaction</p></div>
+  </div>
+</section>
+
+<section id="work">
+  <h2>What We Work For</h2>
+  <div class="work-container">
+    <div class="card"><h3>Web Development</h3><p>Scalable web apps</p></div>
+    <div class="card"><h3>Mobile Apps</h3><p>iOS & Android</p></div>
+    <div class="card"><h3>AI & ML</h3><p>Smart automation</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Our Projects</h2>
+  <div class="project-list"></div>
+</section>
+
+<section id="clients">
+  <h2>Happy Clients</h2>
+  <div class="client-list"></div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <input name="fullName" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input name="mobile" placeholder="Mobile Number" required>
+    <input name="city" placeholder="City" required>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section id="newsletter">
+  <h2>Subscribe to Newsletter</h2>
+  <input id="newsletterEmail" placeholder="Enter your email">
+  <button id="subscribeBtn">Subscribe</button>
+</section>
+
+<footer>
+  <p>© 2026 TechNova Solutions. All Rights Reserved.</p>
+  <div class="socials">
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">Twitter (X)</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">YouTube</a>
+    <a href="#">GitHub</a>
+    <a href="#">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+const backendURL = "http://localhost:5000/api";
+
+/* ===== FETCH PROJECTS ===== */
+fetch(`${backendURL}/projects`)
+  .then(res => res.json())
+  .then(projects => {
+    const list = document.querySelector(".project-list");
+    list.innerHTML = ""; // clear previous content
+
+    if (!projects.length) {
+      list.innerHTML = "<p>No projects available yet.</p>";
+      return;
+    }
+
+    projects.forEach(p => {
+      list.innerHTML += `
+        <div class="project-card">
+          <img src="http://localhost:5000/${p.imageUrl.replace(/^\/+/, '').replace(/\\/g, '/')}" alt="${p.name}">
+          <div class="content">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <button>Read More</button>
+          </div>
+        </div>
+      `;
+    });
+  })
+  .catch(err => console.error("Projects fetch error:", err));
+
+/* ===== FETCH CLIENTS ===== */
+fetch(`${backendURL}/clients`)
+  .then(res => res.json())
+  .then(clients => {
+    const list = document.querySelector(".client-list");
+    list.innerHTML = "";
+
+    if (clients.length === 0) {
+      list.innerHTML = "<p>No clients added yet.</p>";
+      return;
+    }
+
+    clients.forEach(c => {
+      list.innerHTML += `
+        <div class="client-card">
+          <img src="http://localhost:5000/${c.imageUrl.replace(/^\/+/, '').replace(/\\/g, '/')}" alt="${c.name}">
+          <div class="content">
+            <h4>${c.name}</h4>
+            <p>${c.designation}</p>
+            <p>"${c.description}"</p>
+          </div>
+        </div>
+      `;
+    });
+  })
+  .catch(err => console.error("Clients fetch error:", err));
+document.getElementById("contactForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const form = e.target;
+  
+  const data = {
+    fullName: form.fullName.value,
+    email: form.email.value,
+    mobile: form.mobile.value,
+    city: form.city.value
+  };
+
+  const res = await fetch(`${backendURL}/contacts`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if(res.ok){
+    alert("Message sent!");
+    form.reset();
+  } else {
+    const err = await res.json();
+    alert("Error: " + err.error);
+  }
+});
+
+// Newsletter
+document.getElementById("subscribeBtn").addEventListener("click", async () => {
+  const email = document.getElementById("newsletterEmail").value;
+  if(!email) return alert("Enter your email!");
+  
+  const res = await fetch(`${backendURL}/newsletter`, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ email })
+  });
+
+  if(res.ok){
+    alert("Subscribed!");
+    document.getElementById("newsletterEmail").value = "";
+  } else {
+    const err = await res.json();
+    alert("Error: " + err.error);
+  }
+});
+</script>
+
+</body>
+</html>

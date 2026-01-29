@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<style>
+/* ===== GLOBAL ===== */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f0f2f5;
+  color: #333;
+  padding: 20px;
+}
+
+/* ===== HEADER ===== */
+h1 {
+  text-align: center;
+  color: #4f46e5;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background:#fff;
+  border-radius:20px;
+  padding:30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content:"";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: linear-gradient(120deg, rgba(79,70,229,0.15), rgba(99,102,241,0.05));
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* ===== HEADINGS ===== */
+.card h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 22px;
+}
+
+/* ===== FORMS ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea, select {
+  padding: 12px;
+  border-radius: 10px;
+  border:1px solid #ccc;
+  font-size: 14px;
+  width:100%;
+  transition: 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 5px rgba(79,70,229,0.3);
+  outline: none;
+}
+
+textarea { resize:none; }
+
+button {
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background: #4f46e5;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background:#4338ca;
+  transform: scale(1.03);
+}
+
+/* ===== LISTS ===== */
+ul {
+  list-style:none;
+  margin-top:10px;
+  max-height:300px;
+  overflow-y:auto;
+  padding-right:5px;
+}
+
+li {
+  background:#f1f5f9;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+  font-size:14px;
+  word-break:break-word;
+  transition: 0.2s;
+}
+
+li:hover { background:#e0e7ff; }
+
+/* ===== FILE INPUT ===== */
+input[type="file"] {
+  padding:6px;
+}
+
+/* ===== SCROLLBAR ===== */
+ul::-webkit-scrollbar { width:8px; }
+ul::-webkit-scrollbar-thumb { background:#4f46e5; border-radius:8px; }
+ul::-webkit-scrollbar-track { background:#e2e8f0; border-radius:8px; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+  .container { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+<div class="container">
+
+  <!-- Add Project -->
+  <div class="card">
+    <h2>Add Project</h2>
+    <form id="projectForm" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Project Name" required>
+      <textarea name="description" rows="3" placeholder="Project Description" required></textarea>
+      <input type="file" name="image" accept="image/*" required>
+      <button type="submit">Add Project</button>
+    </form>
+  </div>
+
+  <!-- Add Client -->
+  <div class="card">
+    <h2>Add Client</h2>
+    <form id="clientForm" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Client Name" required>
+      <input type="text" name="designation" placeholder="Designation (CEO, Developer, etc.)" required>
+      <textarea name="description" rows="3" placeholder="Client Description" required></textarea>
+      <input type="file" name="image" accept="image/*" required>
+      <button type="submit">Add Client</button>
+    </form>
+  </div>
+
+  <!-- Contact Responses -->
+  <div class="card">
+    <h2>Contact Form Responses</h2>
+    <ul id="contactList"></ul>
+  </div>
+
+  <!-- Newsletter Subscribers -->
+  <div class="card">
+    <h2>Newsletter Subscribers</h2>
+    <ul id="subscriberList"></ul>
+  </div>
+
+</div>
+
+<script>
+const backendURL = "http://localhost:5000/api";
+
+/* ===== Add Project ===== */
+document.getElementById("projectForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const res = await fetch(`${backendURL}/projects`, { method:"POST", body:formData });
+  if(res.ok){ alert("Project added successfully!"); e.target.reset(); } 
+  else { alert("Error adding project."); }
+});
+
+/* ===== Add Client ===== */
+document.getElementById("clientForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const res = await fetch(`${backendURL}/clients`, { method:"POST", body:formData });
+  if(res.ok){ alert("Client added successfully!"); e.target.reset(); } 
+  else { alert("Error adding client."); }
+});
+
+/* ===== Fetch Contact Responses ===== */
+const contactList = document.getElementById("contactList");
+fetch(`${backendURL}/contacts`).then(r=>r.json()).then(data=>{
+  contactList.innerHTML="";
+  data.forEach(c=>{
+    const li=document.createElement("li");
+    li.textContent=`${c.fullName} | ${c.email} | ${c.mobile} | ${c.city}`;
+    contactList.appendChild(li);
+  });
+});
+
+/* ===== Fetch Newsletter Subscribers ===== */
+const subscriberList = document.getElementById("subscriberList");
+fetch(`${backendURL}/newsletter`).then(r=>r.json()).then(data=>{
+  subscriberList.innerHTML="";
+  data.forEach(n=>{
+    const li=document.createElement("li");
+    li.textContent=n.email;
+    subscriberList.appendChild(li);
+  });
+});
+</script>
+
+</body>
+</html>
