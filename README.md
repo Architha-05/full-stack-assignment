@@ -22,6 +22,8 @@ All dynamic data is fetched from the backend using REST APIs. No static data is 
 ![Output Image](4.png)
 ![Output Image](5.png)
 ![Output Image](6.png)
+![Output Image](7.png)
+![Output Image](8.png)
 
 Features
 
