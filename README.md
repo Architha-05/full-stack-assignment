@@ -9,7 +9,9 @@ A Landing Page for users to view projects, clients, submit contact forms, and su
 An Admin Panel for managing projects, clients, contact form submissions, and newsletter subscriptions.
 
 All dynamic data is fetched from the backend using REST APIs. No static data is hardcoded on the frontend.
+**Output Screenshots:**
 
+![Output Image](1.png)
 Features
 
 Landing Page
