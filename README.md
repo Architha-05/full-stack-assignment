@@ -115,6 +115,10 @@ open index.html and run for landing page
 
 open admin.html and run for admin page 
 
+The project includes a dedicated Admin Panel accessible via the “Admin Panel” option in the navigation bar.
+Admin users can manage Projects, Clients, Contacts, and Newsletter subscriptions.
+The admin interface is intentionally separated from the public UI to follow real-world access control practices.
+
 Database:
 
 MongoDB
