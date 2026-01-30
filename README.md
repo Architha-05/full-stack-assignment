@@ -1,8 +1,12 @@
 Full Stack Assignment
+
 Live link : https://fascinating-concha-27badd.netlify.app/
 
 Project Overview
-This is a full‑stack web application built as part of a placement assignment. It consists of:
+
+This is a full‑stack web application built as part of a placement assignment. 
+
+It consists of:
 
 A Landing Page for users to view projects, clients, submit contact forms, and subscribe to a newsletter.
 
